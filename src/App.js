@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <Home />
-      <About />
+      {/* <About /> */}
       {/* <h1>Web Development</h1>
       <h1 id="heading">Web Development</h1>
       <h1 className="web-dev">Web Development</h1>
