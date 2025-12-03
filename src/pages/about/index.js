@@ -3,8 +3,7 @@ import Navbar from "../../components/navbar";
 const About = () => {
   return (
     <div>
-      <Navbar />
-      <h1>About Page</h1>
+      <Navbar activePage="About" />
     </div>
   );
 };

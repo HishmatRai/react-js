@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-const Navbar = () => {
+import { Link, useNavigate, useLocation } from "react-router-dom";
+const Navbar = (props) => {
+  // console.log("props ", props);
+  // console.log("active page",)
   const navigate = useNavigate();
+  const routerLocation = useLocation();
+  // let path = window.location.pathname;
+  let path = routerLocation.pathname;
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#eec3c3ff",
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "5px 10px",
+      }}
+    >
       {/* <ul>
         <li>
           <a href="/">Home</a>
@@ -15,23 +27,45 @@ const Navbar = () => {
       {/* <hr />
       <hr />
       <hr /> */}
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-          <li>
-          <Link to="/login">Login</Link>
-        </li>
-      </ul>
+      {/* <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      <Link to="/login">Login</Link> */}
+
       {/* <hr />
       <button onClick={() => window.location.assign("/")}>Home</button>
       <button onClick={() => window.location.assign("/about")}>About</button>
-      <hr />
-      <button onClick={() => navigate("/")}>Home</button>
-      <button onClick={() => navigate("/about")}>About</button> */}
+      <hr />*/}
+      <div>
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+          style={{ backgroundColor: path === "/" ? "blue" : "yellow" }}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => {
+            navigate("/about");
+          }}
+          style={{
+            backgroundColor: path === "/about" ? "blue" : "yellow",
+          }}
+        >
+          About
+        </button>
+        <button
+          onClick={() => {
+            navigate("/login");
+          }}
+          style={{
+            backgroundColor: path === "/login" ? "blue" : "yellow",
+          }}
+        >
+          Login
+        </button>
+      </div>
+      <p>Active Page:- {props.activePage}</p>
     </div>
   );
 };
