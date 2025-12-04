@@ -1,9 +1,11 @@
 import React from "react";
-import Navbar from "../../components/navbar";
+import { Navbar, Footer } from "../../components";
 const About = () => {
   return (
     <div>
       <Navbar activePage="About" />
+      <h1>About Data</h1>
+      <Footer />
     </div>
   );
 };

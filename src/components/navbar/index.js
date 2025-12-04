@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 const Navbar = (props) => {
-  // console.log("props ", props);
-  // console.log("active page",)
+  console.log("props ", props);
   const navigate = useNavigate();
   const routerLocation = useLocation();
-  // let path = window.location.pathname;
   let path = routerLocation.pathname;
+  const pages = [
+    {
+      title: "Home",
+      path: "/",
+    },
+    {
+      title: "About",
+      path: "/about",
+    },
+    {
+      title: "Contact",
+      path: "/contact",
+    },
+    {
+      title: "Login",
+      path: "/login",
+    },
+    {
+      title: "Sign Up",
+      path: "/signup",
+    },
+  ];
   return (
     <div
       style={{
@@ -16,54 +36,20 @@ const Navbar = (props) => {
         padding: "5px 10px",
       }}
     >
-      {/* <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-      </ul> */}
-      {/* <hr />
-      <hr />
-      <hr /> */}
-      {/* <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/login">Login</Link> */}
-
-      {/* <hr />
-      <button onClick={() => window.location.assign("/")}>Home</button>
-      <button onClick={() => window.location.assign("/about")}>About</button>
-      <hr />*/}
       <div>
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-          style={{ backgroundColor: path === "/" ? "blue" : "yellow" }}
-        >
-          Home
-        </button>
-        <button
-          onClick={() => {
-            navigate("/about");
-          }}
-          style={{
-            backgroundColor: path === "/about" ? "blue" : "yellow",
-          }}
-        >
-          About
-        </button>
-        <button
-          onClick={() => {
-            navigate("/login");
-          }}
-          style={{
-            backgroundColor: path === "/login" ? "blue" : "yellow",
-          }}
-        >
-          Login
-        </button>
+        {pages.map((val, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                navigate(val.path);
+              }}
+              style={{ backgroundColor: path === val.path ? "blue" : "yellow" }}
+            >
+              {val.title}
+            </button>
+          );
+        })}
       </div>
       <p>Active Page:- {props.activePage}</p>
     </div>

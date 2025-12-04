@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../components/navbar";
+import { Navbar, Footer } from "../../components";
 const Login = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <div>
       <Navbar activePage="Login" />
-    
+
       <input
         type="text"
         placeholder="Full Name"
@@ -59,6 +59,7 @@ const Login = () => {
         {message}
       </p>
       <button onClick={loginHandler}>Login</button>
+      <Footer />
     </div>
   );
 };
