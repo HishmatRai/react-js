@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Footer } from "../../components";
+import { Navbar, Footer, Input } from "../../components";
 const Login = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,25 +36,28 @@ const Login = () => {
   return (
     <div>
       <Navbar activePage="Login" />
-
-      <input
+      <Input
+        title="Full Name"
         type="text"
-        placeholder="Full Name"
+        placeholder="Enter full name"
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
       />
-      <input
+      <Input
+        title="Email Address"
         type="email"
-        placeholder="Email Address"
+        placeholder="Enter email address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <Input
+        title="Password"
         type="password"
-        placeholder="Password"
+        placeholder="Enter password"
         value={password}
         onChange={(e) => setPassowrd(e.target.value)}
       />
+
       <p style={{ color: messageType === "error" ? "red" : "green" }}>
         {message}
       </p>
