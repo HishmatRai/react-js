@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Footer } from "../../components";
+import { Card, Layout } from "../../components";
 import "./index.css";
 const Home = () => {
   const data = [
@@ -19,23 +19,9 @@ const Home = () => {
     },
   ];
   return (
-    <div>
-      <Navbar activePage="Home" />
-      <h1>Home Data</h1>
-      <div className="card">
-        {data.map((val, index) => {
-          return (
-            <div key={index}>
-              <img src={val.imgURL} />
-              <h6>{val.title}</h6>
-              <p>{val.text}</p>
-              <button>View more</button>
-            </div>
-          );
-        })}
-      </div>
-      <Footer />
-    </div>
+    <Layout activePage="Home" >
+      <Card data={data} />
+    </Layout>
   );
 };
 export default Home;

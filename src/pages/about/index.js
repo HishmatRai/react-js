@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Footer } from "../../components";
+import { Card, Layout } from "../../components";
 const About = () => {
   const data = [
     {
@@ -18,24 +18,10 @@ const About = () => {
     },
   ];
   return (
-    <div>
-      <Navbar activePage="About" />
+    <Layout activePage="About">
       <h1>About Data</h1>
-       <div className="card">
-        {data.map((val, index) => {
-          return (
-            <div key={index}>
-              <img src={val.imgURL} />
-              <h6>{val.title}</h6>
-              <p>{val.text}</p>
-               <button>View more</button>
-               <button>Like</button>
-            </div>
-          );
-        })}
-      </div>
-      <Footer />
-    </div>
+      <Card data={data} />
+    </Layout>
   );
 };
 export default About;

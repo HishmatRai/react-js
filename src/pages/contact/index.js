@@ -1,12 +1,10 @@
 import React from "react";
-import {Navbar,Footer} from "../../components";
+import { Layout } from "../../components";
 const Contact = () => {
   return (
-    <div>
-      <Navbar activePage="Contact" />
+    <Layout activePage="Contact" hideFooter={true}>
       <h1>Contact Data</h1>
-            <Footer />
-    </div>
+    </Layout>
   );
 };
 export default Contact;
