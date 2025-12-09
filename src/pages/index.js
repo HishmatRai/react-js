@@ -3,4 +3,5 @@ import About from "./about";
 import Login from "./login";
 import Contact from "./contact";
 import NotFound from "./not-found";
-export { Home, About, Login, Contact, NotFound };
+import BlogDetails from "./blog-details";
+export { Home, About, Login, Contact, NotFound,BlogDetails };

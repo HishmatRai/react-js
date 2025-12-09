@@ -1,5 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./index.css";
 const Card = ({ data }) => {
+  const navigate = useNavigate();
   return (
     <div className="card">
       {data.map((val, index) => {
@@ -8,7 +11,15 @@ const Card = ({ data }) => {
             <img src={val.imgURL} />
             <h6>{val.title}</h6>
             <p>{val.text}</p>
-            <button>View more</button>
+            <button
+              onClick={() =>
+                navigate(`/blog-details/${val.title}`, {
+                  state: { data: val },
+                })
+              }
+            >
+              View more
+            </button>
           </div>
         );
       })}
