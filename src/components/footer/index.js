@@ -15,9 +15,9 @@ const Footer = () => {
     >
       <p style={{ fontStyle: "italic" }}>Footer</p>
       <Stack spacing={2} direction="row">
-        <Button variant="text">Text</Button>
+        {/* <Button variant="text">Text</Button>
         <Button color="secondary">Contained</Button>
-        <Button variant="outlined">Outlined</Button>
+        <Button variant="outlined">Outlined</Button> */}
       </Stack>
     </div>
   );
