@@ -24,7 +24,7 @@ const Navbar = (props) => {
     },
     {
       title: "Sign Up",
-      path: "/signup",
+      path: "/sign-up",
     },
   ];
   return (
