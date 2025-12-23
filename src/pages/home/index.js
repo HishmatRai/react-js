@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Layout } from "../../components";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "#1A2027",
-  }),
-}));
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("Login true", user);
+      } else {
+        navigate("/login");
+      }
+    });
+  }, []);
+
   const data = [
     {
       imgURL:
@@ -103,16 +106,8 @@ const Home = () => {
   ];
   return (
     <Layout activePage="Home">
-      {/* <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          {/* <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3, xl: 2 }}>
-            <Item>Box 01</Item>
-          </Grid> */}
           {data.map((val, index) => {
             return (
               <Grid key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>

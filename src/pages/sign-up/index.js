@@ -33,13 +33,11 @@ const SignUp = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           const user = userCredential.user;
-          await setDoc(doc(db, "users", user.uid), {
-            fullName: fullName,
-            email: email,
-          });
-          sendEmailVerification(auth.currentUser).then(() => {
-            // Email verification sent!
-            // ...
+          sendEmailVerification(auth.currentUser).then(async () => {
+            await setDoc(doc(db, "users", user.uid), {
+              fullName: fullName,
+              email: email,
+            });
             console.log("user", user);
             toast.success("Success!");
             setLoading(false);

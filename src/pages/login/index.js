@@ -1,47 +1,43 @@
 import React, { useState } from "react";
 import { Input, Layout } from "../../components";
+import { toast } from "react-toastify";
+import CircularProgress from "@mui/material/CircularProgress";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [fullName, setFullName] = useState("");
+  const auth = getAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
+  const [loading, setLoading] = useState(false);
   const loginHandler = () => {
-    setMessageType("error");
-    if (fullName === "") {
-      setMessage("Full Name Required!");
-    } else if (email === "") {
-      setMessage("Email Required!");
+    if (email === "") {
+      toast.error("Email Required!");
     } else if (
       !email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     ) {
-      setMessage("Please enter valid email address!");
+      toast.error("Please enter valid email address!");
     } else if (password === "") {
-      setMessage("Password Required!");
+      toast.error("Password Required!");
     } else {
-      console.log("Full Name :- ", fullName);
-      console.log("Email Address :- ", email);
-      console.log("Password :- ", password);
-      setMessageType("success");
-      setMessage("Success!");
-      setFullName("");
-      setEmail("");
-      setPassowrd("");
+      setLoading(true);
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          toast.success("Signed in ");
+          setLoading(false);
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+          setLoading(false);
+        });
     }
-
-    setTimeout(() => {
-      setMessage("");
-    }, 2000);
   };
   return (
     <Layout activePage={"Login"}>
-      <Input
-        title="Full Name"
-        type="text"
-        placeholder="Enter full name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
       <Input
         title="Email Address"
         type="email"
@@ -56,11 +52,9 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassowrd(e.target.value)}
       />
-
-      <p style={{ color: messageType === "error" ? "red" : "green" }}>
-        {message}
-      </p>
-      <button onClick={loginHandler}>Login</button>
+      <button onClick={loginHandler}>
+        {loading ? <CircularProgress size="10px" /> : "Login"}
+      </button>
     </Layout>
   );
 };
