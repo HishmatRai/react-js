@@ -61,7 +61,7 @@ const Navbar = (props) => {
   return (
     <div
       style={{
-        backgroundColor: "#eec3c3ff",
+        backgroundColor: "#0e35e2ff",
         display: "flex",
         justifyContent: "space-between",
         padding: "5px 10px",
